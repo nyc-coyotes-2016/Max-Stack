@@ -6,11 +6,13 @@
   <input type="submit" value="Create User">
 </form>
 
-<% if @errors %>
-  <span>Something went wrong:</span>
+<%= erb :'_errors'%>
+
+<!-- <% if @errors %> -->
+  <!-- <span>Something went wrong:</span>
   <ul>
     <% @errors.each do |error| %>
       <li><%= error %></li>
     <% end %>
-  </ul>
-<% end %>
+  </ul> -->
+<!-- <% end %> -->
