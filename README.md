@@ -9,3 +9,7 @@ Team Members:
 
 User Stories:
 ![](user-stories-max-stack.png)
+
+answer = Answer.create(text: "i am an answer)
+
+Comment.create(content: 'here is some content', commentable: answer )
