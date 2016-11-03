@@ -19,12 +19,13 @@
 </head>
 <body>
   <h1>Max Stack</h1>
-  <nav>
+  <nav class="main-nav-bar">
     <ul>
-      <li><a href="/">Questions</a></li>
+      <li><a href="/questions">Home</a></li>
       <% if logged_in? %>
       <li><a href="/users/<%= current_user.id %>">My Dashboard</a>
       <li><a href="/sessions/logout">Logout</a></li>
+      <li><a href="/questions/new">Ask Question</a></li>
       <% else %>
       <li><a href="/sessions/new">Login</a></li>
       <li><a href="/users/new">Register</a></li>
