@@ -4,6 +4,7 @@ get '/questions' do
 end
 
 post '/questions' do
+  require_login
   @question = Question.new(params[:question])
   @question.update(creator_id: current_user.id)
   if @question && @question.save
@@ -17,6 +18,7 @@ post '/questions' do
 end
 
 get '/questions/new' do
+  require_login
   erb :'/questions/new'
 end
 
