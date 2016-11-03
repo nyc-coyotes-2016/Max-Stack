@@ -1,0 +1,12 @@
+<div class="container edit-answer-form">
+  <%= erb :'/_errors', layout: false, locals: { errors: @errors } %>
+
+  <h2>Edit Your Answer:</h2>
+
+  <h3><%= @question.body %></h3>
+
+  <form class="edit-answer-form" method="post" action="/questions/<%= @question.id %>/answers/<%= @answer.id %>">
+    <textarea name="answer[text]"><%= @answer.text %></textarea>
+    <input type="submit" value="Create">
+  </form>
+</div>
