@@ -5,4 +5,13 @@
 
   <a href="/questions/<%= @question.id %>/answers/new">Answer this question</a>
 
+  <% if @answers %>
+    <ul>
+      <% @answers.each do |answer| %>
+        <li><%= answer.text %> -- <%= answer.answer_author %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No one has answered this questions.... Maybe you should <a href="/questions/<%= @question.id %>/answers/new">answer this question!</a></p>
+  <% end %>
 </div>
