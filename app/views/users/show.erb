@@ -1,3 +1,42 @@
 <h1><%= current_user.username %>'s Dashboard</h1>
 
 <h2><%= current_user.username %> Questions/Answers/Placeholder bla bla</h2>
+
+<h2>Questions</h2>
+<% current_user.questions.each do |question|%>
+<ul>
+  <li><a href="/questions/<%= question.id %>"><%= question.title %></a></li>
+  <li><%= question.body %></li>
+  <li>Asked on <%= question.created_at.strftime("%B %d, %Y")%> at <%= question.created_at.strftime("%I:%M %p %Z")%> </li>
+</ul>
+<% end %>
+
+<h2>Answers</h2>
+<% current_user.answers.each do |answer|%>
+<ul>
+  <li><a href="/questions/<%= answer.question.id %>">You answered: <%= answer.question.title %></a></li>
+  <li><%= answer.text %></li>
+  <li>Answer provided on <%= answer.created_at.strftime("%B %d, %Y")%> at <%= answer.created_at.strftime("%I:%M %p %Z")%> </li>
+</ul>
+<% end %>
+
+<h2>Comments</h2>
+<% current_user.comments.each do |comment|%>
+<ul>
+  <% until comment.commentable_type != "Comment" %>
+    <p>placeholder</p>
+      <% if comment.commentable_type == "Answer" %>
+        <% answer =  Answer.find_by(id:comment.commentable_id) %>
+        <% route = answer.question.id %>
+      <% elsif comment.commentable_type == "Question" %>
+        <% route = comment.commentable_id %>
+      <% else %>
+        error handling
+      <% end %>
+    <li><a href="/questions/<%= route %>">You commented on a <%= comment.commentable_type %></a></li>
+    <li><%= comment.content %></li>
+    <li>Commented on <%= comment.created_at.strftime("%B %d, %Y")%> at <%= answer.created_at.strftime("%I:%M %p %Z")%> </li>
+  </ul>
+  <% end %>
+<% end %>
+<h2><%= current_user.username %>'s Best Answers (PLACEHOLDER: Best Answer Count):</h2>
