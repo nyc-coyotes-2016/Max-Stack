@@ -5,14 +5,13 @@ end
 
 post '/questions' do
   require_login
-  @question = Question.new(params[:question])
-  @question.update(creator_id: current_user.id)
-  if @question && @question.save
+  question = Question.new(params[:question])
+  if question && question.update(creator_id: current_user.id)
     status 200
-    redirect "/questions/#{@question.id}"
+    redirect "/questions/#{question.id}"
   else
     status 400
-    @errors = @question.errors.full_messages
+    @errors = question.errors.full_messages
     erb :'/questions/new'
   end
 end
@@ -24,5 +23,6 @@ end
 
 get '/questions/:id' do
   @question = Question.find_by(id: params[:id])
+  @answers = @question.answers
   erb :'/questions/show'
 end
