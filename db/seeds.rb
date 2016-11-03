@@ -1,0 +1,20 @@
+zak = User.create(username: 'zman', email: 'zman@zmail.com', password: 'password')
+sherrianne = User.create(username: 'sherianne', email: 'sherianne@gmail.com', password: 'password')
+jacob = User.create(username: 'thejacob', email: 'jacob@j.com', password: 'password')
+puppy = User.create(username: 'corgiluv', email: 'corgi@pups.com', password: 'password')
+john = User.create(username: 'johndoe', email: 'john2@john.com', password: 'password')
+
+ math = Question.create(title: 'What is 1+1?', body: "Math, I don't like it. Please help me. My calculator is broken. 😂", creator: zak)
+partial = Question.create(title: 'Is it OK to have this many partials?', body: "I love having a partial within a partial within a partial, but something feels so wrong  yet so right about putting a partial within a partial. Please give me advice/feedback. A professional's opinion is what I need.", creator: puppy)
+code = Question.create(title: 'What is code?', body: "I am a computer programmer, too, and I need answers on whether I am going in the right file path in this computer industry.", creator: jacob)
+droopy = Question.create(title: 'Where have all the puppies gone?', body: "WHy do puppies walk away from me when I approach? I only have this droopy eye. Could that be it?", creator: john)
+google = Question.create(title: 'Are apples in season?', body: "By that, I mean, Apple products. Can they compete with the new Google phone?", creator: sherrianne)
+
+ correct = Answer.create(text: 'The answer to 1+1 is 2. Please upvote if you agree with this answer.', question: math, responder: john)
+ too_many = Answer.create(text: 'How many partials were there? Like, 100? Sorry, dude, but that is ONE TOO MANY partials. You need to dial it back. Think about drying that up. DM me if you need some more advice. I got plenty.', question: partial, responder: john)
+Answer.create(text: 'Code is some numbers and letters. Code can also mean code of honour. Your question is too ambiguous. OP needs to rephrase.', question: code, responder: puppy)
+Answer.create(text: 'My name is Josh Corbin and I the numba one contributor on the google phone. I think it is the da bomb dot com and will totally outrank the iphone...give or take a few months. We are ready to rock your world!', question: google, responder: zak)
+wrong = Answer.create(text: 'Actually, 1+1 is 7. Try looking it up on google!', question: math, responder: puppy)
+Answer.create(text: 'I have taken all the puppies and held them captive in my puppy lab, and I am trying to extract maximum cuteness with their cuteness! Stretch: achieve world domination through puppy cuteness, all the puppy cuteness that could every be accumulated!', question: droopy, responder: zak)
+
+Comment.create(content: '')
