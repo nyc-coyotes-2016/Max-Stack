@@ -8,7 +8,7 @@
   <% if @answers %>
     <ul>
       <% @answers.each do |answer| %>
-        <li><%= answer.text %> -- <%= answer.answer_author %></li>
+        <li><%= answer.text %> -- <%= answer.answer_author %> <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">edit</a></li>
       <% end %>
     </ul>
   <% else %>

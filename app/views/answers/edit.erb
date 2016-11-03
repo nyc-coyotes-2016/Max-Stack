@@ -6,7 +6,8 @@
   <h3><%= @question.body %></h3>
 
   <form class="edit-answer-form" method="post" action="/questions/<%= @question.id %>/answers/<%= @answer.id %>">
+    <input type="hidden" value="put" name="_method">
     <textarea name="answer[text]"><%= @answer.text %></textarea>
-    <input type="submit" value="Create">
+    <input type="submit" value="Update">
   </form>
 </div>
