@@ -13,5 +13,4 @@ post 'questions/:id/answers' do
     @errors = @answer.errors.full_messages
     erb :'/answers/new'
   end
-
 end
