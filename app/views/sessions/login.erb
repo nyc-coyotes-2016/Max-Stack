@@ -1,18 +1,8 @@
 <h1>User Login</h1>
+<%= erb :'_errors', layout: false, locals: { errors: @errors } %>
 <form action='/sessions' method='POST'>
   <h1>Login</h1>
   <input type="text" name="email" placeholder="email" />
   <input type="password" name="password" placeholder="password" />
   <input type="submit" value="Login">
 </form>
-
-<%= erb '_errors.erb' %>
-
-<!-- <% if @errors %>
-  <span>Something went wrong:</span>
-  <ul>
-    <% @errors.each do |error| %>
-      <li><%= error %></li>
-    <% end %>
-  </ul>
-<% end %> -->
