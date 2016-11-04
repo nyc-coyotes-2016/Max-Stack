@@ -10,4 +10,8 @@ class Question < ActiveRecord::Base
   def validates_creator_id
     errors.add(:creator_id, "does not exist") unless User.exists?(self.creator_id)
   end
+
+  def creator
+    self.creator_id == current_user.id
+  end
 end
