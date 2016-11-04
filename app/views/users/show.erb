@@ -23,20 +23,16 @@
 <h2>Comments</h2>
 <% current_user.comments.each do |comment|%>
 <ul>
-  <% until comment.commentable_type != "Comment" %>
-    <p>placeholder</p>
-      <% if comment.commentable_type == "Answer" %>
-        <% answer =  Answer.find_by(id:comment.commentable_id) %>
-        <% route = answer.question.id %>
-      <% elsif comment.commentable_type == "Question" %>
-        <% route = comment.commentable_id %>
-      <% else %>
-        error handling
-      <% end %>
-    <li><a href="/questions/<%= route %>">You commented on a <%= comment.commentable_type %></a></li>
-    <li><%= comment.content %></li>
-    <li>Commented on <%= comment.created_at.strftime("%B %d, %Y")%> at <%= answer.created_at.strftime("%I:%M %p %Z")%> </li>
-  </ul>
-  <% end %>
+  <li><a href="/questions/<%= comment_router(comment)%>
+    <% if @original_comment %>
+      ">You commented on this <%= @original_comment.commentable_type %>: <%= @original_comment.content %></a>
+    <% else %>
+      ">You commented on this <%= comment.commentable_type %>: <%= comment.content %></a>
+    <% end %>
+    </li>
+
+  <li>Comment made on <%= comment.created_at.strftime("%B %d, %Y")%> at <%= comment.created_at.strftime("%I:%M %p %Z")%> </li>
+</ul>
 <% end %>
+
 <h2><%= current_user.username %>'s Best Answers (PLACEHOLDER: Best Answer Count):</h2>
