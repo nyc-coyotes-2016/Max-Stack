@@ -17,7 +17,7 @@ post '/questions' do
 end
 
 get '/questions/new' do
-  require_login
+  # require_login
   erb :'/questions/new'
 end
 
@@ -26,3 +26,28 @@ get '/questions/:id' do
   @answers = @question.answers
   erb :'/questions/show'
 end
+
+get '/questions/:id/edit' do
+  require_login
+  @question = Question.find_by(id: params[:id])
+  if @question && @question.creator_id == current_user.id
+    erb :'/questions/edit'
+  else
+    erb :'error_404'
+  end
+end
+
+# put '/questions/:id' do
+#   require_login
+#   question = Question.find_by(id: params[:id])
+#   if question && question.creator_id == current_user.id
+#     question.update(params[:question])
+#     status 200
+#     redirect "/questions/#{question.id}"
+#   elsif question.creator_id != current_user.id
+#     erb
+#
+# end
+#
+# delete '/questions/:id' do
+# end
