@@ -19,3 +19,11 @@
   margin: 0 auto;
   padding-left: 8%;
 }
+
+#new-question {
+  margin-left: 20%;
+}
+
+#btn-question-new {
+  margin-right: 33%;
+}
