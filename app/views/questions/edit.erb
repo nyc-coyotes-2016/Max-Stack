@@ -1,0 +1,12 @@
+<div class="container edit-question-form">
+  <%= erb :'/_errors', layout: false, locals: { errors: @errors } %>
+
+  <h2>Edit Your Question:</h2>
+
+  <form class="edit-question-form" method="post" action="/questions/<%= @question.id %>">
+    <input type="hidden" value="put" name="_method">
+    <input type="text" name="question[title]" value="<%= @question.title %>">
+    <textarea name="question[body]"><%= @question.body %></textarea>
+    <input type="submit" value="Update">
+  </form>
+</div>

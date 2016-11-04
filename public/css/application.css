@@ -10,6 +10,11 @@
   padding: 0px 0px 20px 40px;
 }
 
+.question-title {
+  margin: 0 auto;
+  padding-left: 90px;
+}
+
 .sub-title {
   margin: 0 auto;
   padding: 0px 20px 20px 40px;
@@ -26,4 +31,21 @@
 
 #btn-question-new {
   margin-right: 33%;
+}
+
+.edit-btn {
+  display: inline;
+}
+
+.delete-btn {
+  display: inline;
+}
+
+.question-body {
+  margin-left: 5%;
+  font-size: 18px;
+}
+
+.side-button {
+  margin-bottom: 5%;
 }

@@ -26,3 +26,51 @@ get '/questions/:id' do
   @answers = @question.answers
   erb :'/questions/show'
 end
+
+get '/questions/:id/edit' do
+  binding.pry
+  require_login
+  @question = Question.find_by(id: params[:id])
+  if @question && @question.creator_id == current_user.id
+    erb :'/questions/edit'
+  else
+    erb :'error_404'
+  end
+end
+
+put '/questions/:id' do
+  require_login
+  question = Question.find_by(id: params[:id])
+  if question
+    if question.creator_id == current_user.id
+      question.update(params[:question])
+      status 200
+      redirect "/questions/#{question.id}"
+    else
+      erb :'error_404'
+    end
+  else
+    status 400
+    @errors = question.errors.full_messages
+    erb :'/questions/edit'
+  end
+end
+
+delete '/questions/:id' do
+  require_login
+  @question = Question.find_by(id: params[:id])
+  @answers = @question.answers
+  if @question
+    if @question.creator_id == current_user.id
+      @question.destroy
+      status 200
+      redirect "/questions"
+    else
+      erb :'error_404'
+    end
+  else
+    status 400
+    @errors = ['delete was unsuccessful']
+    erb :'/questions/show'
+  end
+end
