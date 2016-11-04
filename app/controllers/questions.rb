@@ -17,7 +17,7 @@ post '/questions' do
 end
 
 get '/questions/new' do
-  # require_login
+  require_login
   erb :'/questions/new'
 end
 
@@ -37,17 +37,39 @@ get '/questions/:id/edit' do
   end
 end
 
-# put '/questions/:id' do
-#   require_login
-#   question = Question.find_by(id: params[:id])
-#   if question && question.creator_id == current_user.id
-#     question.update(params[:question])
-#     status 200
-#     redirect "/questions/#{question.id}"
-#   elsif question.creator_id != current_user.id
-#     erb
-#
-# end
-#
-# delete '/questions/:id' do
-# end
+put '/questions/:id' do
+  require_login
+  question = Question.find_by(id: params[:id])
+  if question
+    if question.creator_id == current_user.id
+      question.update(params[:question])
+      status 200
+      redirect "/questions/#{question.id}"
+    else
+      erb :'error_404'
+    end
+  else
+    status 400
+    @errors = question.errors.full_messages
+    erb :'/questions/edit'
+  end
+end
+
+delete '/questions/:id' do
+  require_login
+  @question = Question.find_by(id: params[:id])
+  @answers = @question.answers
+  if @question
+    if @question.creator_id == current_user.id
+      @question.destroy
+      status 200
+      redirect "/questions"
+    else
+      erb :'error_404'
+    end
+  else
+    status 400
+    @errors = ['delete was unsuccessful']
+    erb :'/questions/show'
+  end
+end

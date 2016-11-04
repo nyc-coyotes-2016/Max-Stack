@@ -49,7 +49,9 @@ end
 
 delete '/questions/:id/answers/:answer_id' do
   require_login
-  if answer = Answer.find_by(id: params[:answer_id])
+  @question = Question.find_by(id: params[:id])
+  @answers = @question.answers
+  if answer = @answers.find_by(id: params[:answer_id])
     if answer.responder_id == current_user.id
       answer.destroy
       status 200
