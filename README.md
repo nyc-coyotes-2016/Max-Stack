@@ -2,14 +2,11 @@
 DBC Stack Overflow Clone
 
 Team Members:
-1. Sherianne Bolling
-2. Zack Rowden
-3. Jacob Williams
-4. Catherine Khuu
+1. [Sherianne Bolling](https://github.com/sheriannebolling)
+2. [Catherine Khuu](https://github.com/catkhuu)
+3. [Zack Rowden](https://github.com/regulus33)
+4. [Jacob Williams](https://github.com/jacobgwilliams)
+
 
 User Stories:
 ![](user-stories-max-stack.png)
-
-answer = Answer.create(text: "i am an answer)
-
-Comment.create(content: 'here is some content', commentable: answer )
