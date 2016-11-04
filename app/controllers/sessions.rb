@@ -1,9 +1,7 @@
-# LOG IN PAGE
 get '/sessions/new' do
   erb :'sessions/login'
 end
 
-# LOG IN POST
 post '/sessions' do
   user = User.find_by(email: params[:email])
   if user && user.authenticate(params[:password])
@@ -16,8 +14,7 @@ post '/sessions' do
   end
 end
 
-# LOG OUT
-delete '/sessions/logout' do
+get '/sessions/logout' do # this should be a DELETE, but could not style to  disable select
   session.clear
   redirect '/'
 end

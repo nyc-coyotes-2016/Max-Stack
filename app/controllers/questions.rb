@@ -1,5 +1,5 @@
 get '/questions' do
-  @questions = Question.all.order(:title)
+  @questions = Question.all.order(:updated_at)
   erb :index
 end
 
