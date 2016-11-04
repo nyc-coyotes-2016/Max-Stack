@@ -11,7 +11,11 @@ class Question < ActiveRecord::Base
     errors.add(:creator_id, "does not exist") unless User.exists?(self.creator_id)
   end
 
-  def creator
-    self.creator_id == current_user.id
+  def answer_total
+    self.answers.count(:all)
+  end
+
+  def vote_total
+    self.votes.sum(:vote_value)
   end
 end
