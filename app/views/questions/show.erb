@@ -1,7 +1,22 @@
 <div class="question-title">
   <h1><%= @question.title %></h1>
+  <p>Asked by <%= @question.creator.username %> on <%=@question.created_at.strftime("%B %d, %Y at %I:%M %p %Z")%><p>
 
   <p class="question-body"><%= @question.body %></p>
+  <a href="/questions/<%= @question.id %>/comments/new">Comment on this question</a>
+  <p>Comments on this question:</p>
+  <%  @question.comments.each do |comment| %>
+    <ul>
+      <li><%=comment.content%>  -<a href="/users/<%= comment.commenter.id %>"><%= comment.commenter.username %></a> <em>(<%=comment.created_at.strftime("%B %d, %Y at %I:%M %p %Z")%>)</em> </li>
+      <% if current_user == comment.commenter %>
+        <a href="/questions/<%= @question.id %>/comments/<%= comment.id %>/edit">edit</a>
+        <form class="delete_answer" method="post" action="/questions/<%= @question.id %>/comments/<%= comment.id %>">
+          <input type="hidden" value="delete" name="_method">
+          <a class="waves-effect waves-light btn"><input type="submit" value="delete"></a>
+        </form>
+      <% end %>
+    </ul>
+  <% end %>
 <div class="side-button">
   <div class="container edit-btn">
     <form class="edit_question-btn" method="get" action="/questions/<%= @question.id %>/edit">
@@ -15,13 +30,30 @@
     </form>
   </div>
 </div>
-
 <div class="answer_list">
   <% if !@answers.empty? %>
     <ul class="answer-list-ul">
       <% @answers.each do |answer| %>
         <%= erb :'/answers/_show', layout: false, locals: { answer: answer , question: @question } %>
+
+        <a href="/answers/<%= answer.id %>/comments/new">Comment on this answer</a>
+        <ul>
+          <% if answer.comments.any? %>
+          <strong>Comments on this answer:</strong>
+          <% answer.comments.each do |comment| %>
+            <li><%=comment.content%>  -<a href="/users/<%= comment.commenter.id %>"><%= comment.commenter.username %></a> <em>(<%=comment.created_at.strftime("%B %d, %Y at %I:%M %p %Z")%>)</em> </li>
+            <% if current_user == comment.commenter %>
+              <a href="/answers/<%= answer.id %>/comments/<%= comment.id %>/edit">edit</a>
+            <form class="delete_answer" method="post" action="/answers/<%= answer.id %>/comments/<%= comment.id %>">
+              <input type="hidden" value="delete" name="_method">
+              <a class="waves-effect waves-light btn"><input type="submit" value="delete comment"></a>
+            </form>
+            <% end %>
+        </ul>
+          <% end %>
+        <% end %>
       <% end %>
+
     </ul>
 
   <div class="answer-button-unique">

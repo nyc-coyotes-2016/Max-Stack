@@ -18,7 +18,7 @@ def comment_router(comment)
        question_id = answer.question.id
        question_id
      else
-      FAIL
+      puts "#{comment.commentable_type}"
      end
    end
 end
