@@ -3,9 +3,7 @@
 
   <p><%= @question.body %></p>
 
-  <a href="/questions/<%= @question.id %>/answers/new">Answer this question</a>
-
-  <% if @answers %>
+  <% if !@answers.empty? %>
     <ul>
       <% @answers.each do |answer| %>
         <li><%= answer.text %> -- <%= answer.answer_author %> <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">edit</a></li>
@@ -15,7 +13,9 @@
         </form>
       <% end %>
     </ul>
+
+    <a href="/questions/<%= @question.id %>/answers/new">Answer this question</a>
   <% else %>
-    <p>No one has answered this questions.... Maybe you should <a href="/questions/<%= @question.id %>/answers/new">answer this question!</a></p>
+    <h6>No one has answered this question... Maybe you should <a href="/questions/<%= @question.id %>/answers/new">answer this question!</a></h6>
   <% end %>
 </div>

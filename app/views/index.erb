@@ -1,16 +1,27 @@
-<div class="headers container">
-  <h1>Welcome to Max-Stack!</h1>
-  <h3>Better than your average stack.</h3>
-</div>
-
-<div class="container">
+<div class="questions-title">
   <h2>Questions:</h2>
   <% if @questions %>
-  <ul>
-    <% @questions.each do |question| %>
-      <li><a href="/questions/<%= question.id %>"><%= question.title %></a></li>
-    <% end %>
-  </ul>
+    <table class="striped">
+      <thead>
+        <tr>
+            <th data-field="question_name">Question</th>
+            <th data-field="answer_count">Answers</th>
+            <th data-field="vote_count">Votes</th>
+            <th data-field="view_count">Views</th>
+
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @questions.each do |question| %>
+      <tr>
+        <td><a href="/questions/<%= question.id %>"><%= question.title %></a></td>
+        <td><%= question.answer_total %></td>
+        <td><%= question.vote_total %></td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
   <% else %>
     <p>Sorry our site is down for maintenance. Please check back for questions later.</p>
   <% end %>

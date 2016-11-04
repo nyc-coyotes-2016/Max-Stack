@@ -1,42 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    normalize.css removes cross-browser differences in defaults, e.g.,
-    differences in how form elements appear between Firefox and IE
-    See: http://necolas.github.com/normalize.css/
-  -->
+
   <link rel="stylesheet" href="/css/normalize.css">
-  <!--
-    application.css is where you put your styles
-  -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+
   <link rel="stylesheet" href="/css/application.css">
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
   <script src="/js/application.js"></script>
 
-  <title></title>
+  <title>Max Stack</title>
 </head>
 <body>
-  <h1>Max Stack</h1>
-  <nav class="main-nav-bar">
-    <ul>
-      <li><a href="/questions">Home</a></li>
-      <% if logged_in? %>
-      <li><a href="/users/<%= current_user.id %>"><%= current_user.username %>'s Dashboard</a></li>
-      <li><form method="POST" action="/sessions/logout">
-        <input type='hidden' name='_method' value='delete'>
-        <input type="submit" value="Logout" />
-      </form></li>
-      <li><a href="/sessions/logout">Logout</a></li>
-      <li><a href="/questions/new">Ask Question</a></li>
-      <% else %>
-      <li><a href="/sessions/new">Login</a></li>
-      <li><a href="/users/new">Register</a></li>
-      <% end %>
-    </ul>
+  <div class="deep-orange darken-1 main-page-div">
+  <div class="headers main-title">
+    <h2 class="main-title white-text text-darken-2">Max Stack</h2>
+    <h3 class="sub-title white-text text-darken-2">Better than your average stack.</h3>
+  </div>
+
+  <nav>
+    <div class="nav-wrapper blue darken-1">
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a class="cyan lighten-2 btn" href="/questions">Home</a></li>
+        <% if logged_in? %>
+          <li><a class="cyan lighten-2 btn" href="/users/<%= current_user.id %>"><%= current_user.username %>'s Dashboard</a></li>
+          <li><a class="cyan lighten-2 btn" href="/questions/new">Ask Question</a></li>
+          <li><a class="cyan lighten-2 btn" href="/sessions/logout">Log Out</a></li>
+        <% else %>
+          <li><a class="cyan lighten-2 btn" href="/sessions/new">Login</a></li>
+          <li><a class="cyan lighten-2 btn" href="/users/new">Register</a></li>
+        <% end %>
+      </ul>
+    </div>
   </nav>
-  <hr />
+</div>
+
+
   <%= yield %>
+
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 </body>
 </html>

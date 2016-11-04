@@ -1,11 +1,27 @@
-<div class="container new-user-question-form">
+<div class="container center-align new-user-question-form">
   <%= erb :'/_errors', layout: false, locals: { errors: @errors } %>
 
-  <h2>Ask a Question:</h2>
+  <h3 id="ask-question">Ask a Question</h3>
 
-  <form class="new-question-form" method="post" action="/questions">
-    <input type="text" name="question[title]" placeholder="Question Title">
-    <textarea name="question[body]">Your Question</textarea>
-    <input type="submit" value="Create">
-  </form>
+
+  <div class="row" id="new-question">
+    <form class="col s12 new-question-form" method="post" action="/questions">
+      <div class="row">
+        <div class="input-field col s8">
+          <input id="question_title" name="question[title]" type="text" class="validate">
+          <label for="input_text" class="center-align">Question Title</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s8">
+          <textarea id="question_body" name="question[body]" class="materialize-textarea validate"></textarea>
+          <label class="center-align" accesskey=""for="textarea1">What do you want to ask?</label>
+        </div>
+      </div>
+      <button id="btn-question-new" class="btn waves-effect waves-light" type="submit" name="action">Create
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+  </div>
+
 </div>
