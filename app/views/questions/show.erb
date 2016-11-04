@@ -9,6 +9,10 @@
     <ul>
       <% @answers.each do |answer| %>
         <li><%= answer.text %> -- <%= answer.answer_author %> <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">edit</a></li>
+        <form class="delete_answer" method="post" action="/questions/<%= @question.id %>/answers/<%= answer.id %>">
+          <input type="hidden" value="delete" name="_method">
+          <a class="waves-effect waves-light btn"><input type="submit" value="delete"></a>
+        </form>
       <% end %>
     </ul>
   <% else %>
