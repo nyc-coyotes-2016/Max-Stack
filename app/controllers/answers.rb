@@ -32,8 +32,20 @@ put '/questions/:id/answers/:answer_id' do
     status 200
     redirect "/questions/#{@question.id}"
   else
-    status 400 
+    status 400
     @errors = @answer.errors.full_messages
     erb :'/answers/edit'
+  end
+end
+
+delete '/questions/:id/answers/:answer_id' do
+  if answer = Answer.find_by(id: params[:answer_id])
+    answer.destroy
+    status 200
+    redirect "/questions/#{params[:id]}"
+  else
+    status 400
+    @errors = ['delete unsuccessful']
+    erb :'/questions/show'
   end
 end
