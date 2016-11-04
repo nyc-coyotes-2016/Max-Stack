@@ -45,7 +45,7 @@ delete '/questions/:id/answers/:answer_id' do
     redirect "/questions/#{params[:id]}"
   else
     status 400
-    @errors = ['delete unsuccessful']
+    @errors = ['delete unsuccessful']   #I forget if answer.errors.full_messages works with this one. Will try later, but hard coding a fail message should work for now.
     erb :'/questions/show'
   end
 end
