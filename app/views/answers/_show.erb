@@ -1,0 +1,9 @@
+<li class="answer-item" id="answer<%= answer.id %>">
+  <%= answer.text %> -- <%= answer.answer_author %>
+  <a class="edit-link" href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">edit</a>
+  <form class="delete_answer" method="post" action="/questions/<%= @question.id %>/answers/<%= answer.id %>">
+    <input type="hidden" value="delete" name="_method">
+    <a class="delete-btn waves-effect waves-light btn"><input type="submit" value="delete"></a>
+  </form>
+
+</li>

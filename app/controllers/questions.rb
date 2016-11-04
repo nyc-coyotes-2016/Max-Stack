@@ -28,6 +28,7 @@ get '/questions/:id' do
 end
 
 get '/questions/:id/edit' do
+  binding.pry
   require_login
   @question = Question.find_by(id: params[:id])
   if @question && @question.creator_id == current_user.id
