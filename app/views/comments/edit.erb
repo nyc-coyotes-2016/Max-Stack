@@ -1,0 +1,28 @@
+<div class="container new-user-answer-form">
+  <%= erb :'/_errors', layout: false, locals: { errors: @errors } %>
+
+  <% if @question %>
+  <% commentable = "Question" %>
+    <h2><%= @question.body %></h2>
+    <% question_id = @question.id %>
+  <% elsif @answer %>
+  <% commentable = "Answer" %>
+    <h2><%= @answer.text %></h2>
+    <% answer_id = @answer.id %>
+  <% end %>
+  <h3>Edit Your Comment on this <%= commentable %> :</h3>
+  <% if @question %>
+    <form class="edit-answer-form" method="post" action="/questions/<%= @question.id %>/comments/<%= @comment.id %>">
+      <input type="hidden" value="put" name="_method">
+      <textarea name="comment[content]"><%= @comment.content %></textarea>
+      <input type="submit" value="Update">
+    </form>
+  <% elsif @answer %>
+    <form class="edit-answer-form" method="post" action="/answers/<%= @answer.id %>/comments/<%= @comment.id %>">
+      <input type="hidden" value="put" name="_method">
+      <textarea name="comment[content]"><%= @comment.content %></textarea>
+      <input type="submit" value="Update">
+    </form>
+  <% end %>
+
+</div>
